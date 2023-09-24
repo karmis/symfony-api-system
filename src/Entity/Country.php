@@ -23,15 +23,20 @@ class Country
     private ?string $code = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: 2)]
-    #[Assert\GreaterThanOrEqual(0)]
     #[Assert\When(
         expression: 'this.getDiscountType() === DISCOUNT_PERCENT',
         constraints: [
-            new Assert\LessThanOrEqual(100, message: 'The value should be between 0.01 and 100!'),
-            new Assert\GreaterThanOrEqual(0.01, message: 'The value should be between 0.01 and 100!')
+            new Assert\LessThanOrEqual(100, message: 'The value should be between 0 and 100!'),
+            new Assert\GreaterThanOrEqual(0, message: 'The value should be between 0 and 100!')
         ],
     )]
-    private ?float $tax = 0.01;
+    #[Assert\When(
+        expression: 'this.getDiscountType() === DISCOUNT_FIXED',
+        constraints: [
+            new Assert\GreaterThanOrEqual(0, message: 'The value should be greater than 0')
+        ],
+    )]
+    private ?float $tax;
 
 
     public function getId(): ?int

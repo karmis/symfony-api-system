@@ -19,21 +19,12 @@ use const App\Entity\DISCOUNT_PERCENT;
 
 class ApiController extends AbstractController
 {
-    #[Route('/')]
-    public function allAction(EntityManagerInterface $em): Response
-    {
-        $products = $em->getRepository(Product::class)->findAll();
-
-
-        return new JsonResponse(
-            $products,
-            200,
-            ["Content-Type" => "application/json"]
-        );
-    }
-
     /**
-     * @throws Exception
+     * Get final price
+     * @param ApiValidationService $validationService
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @return JsonResponse
      */
     #[Route('/calculate-price', name: 'calculate_price')]
     public function calculateAction(ApiValidationService $validationService, Request $request, EntityManagerInterface $em): JsonResponse
@@ -50,7 +41,7 @@ class ApiController extends AbstractController
         if (count($errors) > 0) {
             return new JsonResponse(
                 $errors,
-                200,
+                400,
                 ["Content-Type" => "application/json"]
             );
         }
@@ -106,10 +97,11 @@ class ApiController extends AbstractController
     }
 
     /**
-     * Get final price
+     * Payment
      * @param ApiValidationService $validationService
      * @param Request $request
      * @param EntityManagerInterface $em
+     * @param PaymentService $paymentService
      * @return JsonResponse
      * @throws Exception
      */
