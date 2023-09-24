@@ -2,15 +2,14 @@ version: "3"
 
 services:
     db:
-        image: mysql:8.0.33
+        image: mysql:8.0.32
         platform: linux/x86_64
         volumes:
             - "db_app:/var/lib/mysql"
         environment:
-            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-            MYSQL_DATABASE: ${MYSQL_DATABASE}
-            MYSQL_USER: ${MYSQL_USER}
-            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+            MYSQL_DATABASE: symfony_api
+            MYSQL_USER: root
+            MYSQL_PASSWORD: root
         ports:
             - 3307:3306
         networks:
@@ -34,7 +33,7 @@ services:
             - symfony_app_var:/var/www/symfony/var
             - symfony_app_vendor:/var/www/symfony/vendor
         ports:
-            - 80:80
+            - "80:80"
         networks:
             - symfony_app
         env_file:
