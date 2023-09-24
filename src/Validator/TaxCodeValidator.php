@@ -2,13 +2,11 @@
 
 namespace App\Validator;
 
-use Attribute;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedValueException;
 
-#[Attribute]
 class TaxCodeValidator extends ConstraintValidator
 {
     public function validate(mixed $value, Constraint $constraint): void

@@ -2,14 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\CouponRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 const DISCOUNT_FIXED = 'fix';
 const DISCOUNT_PERCENT = 'prc';
-#[ORM\Entity(repositoryClass: CouponRepository::class)]
+#[ORM\Entity()]
 class Coupon
 {
     #[ORM\Id]

@@ -3,7 +3,6 @@
 namespace App\Service;
 
 use App\Validator;
-use Exception;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -17,7 +16,9 @@ class ApiValidationService
     }
 
     /**
-     * @throws Exception
+     * Validate values to buy
+     * @param array $data
+     * @return array
      */
     public function validateBuyRequest(array $data): array /*ConstraintViolationListInterface*/
     {
@@ -39,6 +40,7 @@ class ApiValidationService
     }
 
     /**
+     * Validate values to calculate price
      * @param array $data
      * @return array
      */
