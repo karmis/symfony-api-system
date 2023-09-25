@@ -7,11 +7,13 @@ services:
         volumes:
             - "db_app:/var/lib/mysql"
         environment:
+            MYSQL_ROOT_PASSWORD: root
             MYSQL_DATABASE: symfony_api
             MYSQL_USER: root
             MYSQL_PASSWORD: root
+            MYSQL_HOST: db
         ports:
-            - 3307:3306
+            - 3306:3306
         networks:
             - symfony_app
     php:
