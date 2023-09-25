@@ -28,3 +28,9 @@ http://127.0.0.1:8000/purchase
   "paymentProcessor": "stripe"
 }
 ```
+
+### Fill db by default values
+
+```text
+symfony console app:fill
+```
