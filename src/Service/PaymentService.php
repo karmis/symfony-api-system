@@ -11,7 +11,6 @@ class PaymentService
      * @throws \Exception
      */
     public function pay(int $price, string $paymentProcessor) {
-        $pp = null;
         $resp = null;
         if ($paymentProcessor == 'paypal') {
             $pp = new PaypalPaymentProcessor();
